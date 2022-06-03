@@ -1,17 +1,43 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <RentraxPaginator
+    :ipp="ipp"
+    :productsCount="100"
+    :numberCountFirstAndEnd="2"
+    :numberShowAll="7"
+    :paginationShowCount="13"
+    @change-page="(x)=> newPage(x)"
+  />
+  <RentraxIpp 
+  @change-ipp="(x)=> newIpp(x)"
+  />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import RentraxPaginator from "./components/RentraxPaginator.vue";
+import RentraxIpp from "./components/RentraxIpp.vue";
 
 export default {
-  name: 'App',
+  data() {
+    return {
+      ipp:1
+    }
+  },
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    RentraxPaginator,
+    RentraxIpp
+  },
+  methods: {
+    newPage(newPage){
+      this.page=newPage;
+      console.log(newPage);
+    },
+    newIpp(newIpp){
+      this.ipp=parseInt(newIpp);
+      console.log(newIpp);
+    }
+  },
+};
 </script>
 
 <style>
